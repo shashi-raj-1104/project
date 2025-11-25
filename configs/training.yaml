@@ -1,0 +1,54 @@
+# Training Configuration
+training:
+  epochs: 50
+  batch_size: 4
+  learning_rate: 1e-4
+  gradient_accumulation_steps: 2
+  mixed_precision: "fp16"
+  
+  # Optimization
+  optimizer: "adamw"
+  weight_decay: 0.01
+  lr_scheduler: "cosine"
+  warmup_steps: 500
+  
+  # Checkpointing
+  save_interval: 5
+  keep_checkpoints: 3
+  
+  # Validation
+  val_interval: 1
+  early_stopping_patience: 10
+
+model:
+  # UNet Configuration
+  unet:
+    sample_size: 64
+    in_channels: 4
+    out_channels: 4
+    layers_per_block: 2
+    block_out_channels: [320, 640, 1280, 1280]
+    attention_head_dim: [5, 10, 20, 20]
+    
+  # VAE Configuration  
+  vae:
+    in_channels: 3
+    out_channels: 3
+    latent_channels: 4
+    
+  # Text Encoder
+  text_encoder:
+    max_length: 77
+
+data:
+  image_size: 1024
+  channels: 3
+  train_size: 800
+  val_size: 200
+  augmentations: true
+
+diffusion:
+  beta_schedule: "scaled_linear"
+  beta_start: 0.00085
+  beta_end: 0.012
+  num_train_timesteps: 1000

@@ -1,0 +1,21 @@
+# Model Architecture Configuration
+model:
+  name: "SatelliteDiffusionUNet"
+  type: "conditional_unet"
+  
+  unet:
+    attention_resolutions: [4, 2, 1]
+    channel_mult: [1, 2, 4, 4]
+    num_res_blocks: 2
+    dropout: 0.1
+    use_scale_shift_norm: true
+    
+  vae:
+    embed_dim: 4
+    double_z: true
+    z_channels: 4
+    
+  conditioning:
+    context_dim: 768
+    use_attention: true
+    cross_attention_dim: 768

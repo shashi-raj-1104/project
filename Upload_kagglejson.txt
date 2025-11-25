@@ -1,0 +1,37 @@
+Step 1: Upload kaggle.json to Colab
+
+Run this cell:
+
+from google.colab import files
+files.upload()
+
+
+Upload your kaggle.json
+
+Then:
+
+!mkdir -p ~/.kaggle
+!cp kaggle.json ~/.kaggle/
+!chmod 600 ~/.kaggle/kaggle.json
+
+Step 2: Run the downloader
+!python data/download_kaggle.py
+
+
+This creates:
+
+data/
+   train/
+   train_label/
+   valid/
+   valid_label/
+   test/
+
+Step 3: Load dataset
+from data.dataset import DeepGlobeDataset
+from torch.utils.data import DataLoader
+
+ds = DeepGlobeDataset(root="data", split="train", img_size=512)
+loader = DataLoader(ds, batch_size=4, shuffle=True)
+
+print("Samples:", len(ds))

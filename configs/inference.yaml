@@ -1,0 +1,16 @@
+# Inference Configuration
+inference:
+  num_steps: 50
+  guidance_scale: 7.5
+  eta: 0.0
+  strength: 1.0
+  
+  # Output settings
+  output_size: 1024
+  output_format: "png"
+  quality: 95
+  
+  # Performance
+  use_memory_efficient_attention: true
+  enable_cpu_offload: false
+  enable_sequential_cpu_offload: false
